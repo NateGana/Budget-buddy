@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BudgetBuddy – Simple Expense Tracker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<aside class="sidebar">
+  <div class="brand">💰 BudgetBuddy</div>
+  <nav>
+    <button class="nav-btn active" data-view="dashboard">Dashboard</button>
+    <button class="nav-btn" data-view="transactions">Transactions</button>
+  </nav>
+</aside>
+
+<main>
+  <section id="dashboard" class="view active">
+    <h1>Dashboard</h1>
+    <div class="cards" id="stats"></div>
+    <div class="panel">
+      <h2>Spending by Category</h2>
+      <div id="catBars"></div>
+    </div>
+    <div class="panel">
+      <h2>Recent Transactions</h2>
+      <ul class="list" id="recentList"></ul>
+    </div>
+  </section>
+
+  <section id="transactions" class="view">
+    <div class="head"><h1>Transactions</h1><button class="btn" id="addTxnBtn">+ Add Transaction</button></div>
+    <div class="filters">
+      <input type="search" id="searchTxn" placeholder="Search transactions…" aria-label="Search transactions">
+      <select id="filterType" aria-label="Filter by type">
+        <option value="">All types</option><option>Income</option><option>Expense</option>
+      </select>
+      <select id="filterCategory" aria-label="Filter by category"></select>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Date</th><th>Description</th><th>Category</th><th>Type</th><th>Amount</th><th>Actions</th></tr></thead>
+        <tbody id="txnBody"></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<div class="modal" id="modal" hidden>
+  <form class="modal-box" id="form">
+    <h2 id="formTitle">Add Transaction</h2>
+    <label>Description <input id="f_desc" required maxlength="60"></label>
+    <div class="row">
+      <label>Type <select id="f_type"><option>Expense</option><option>Income</option></select></label>
+      <label>Amount <input id="f_amount" type="number" min="0.01" step="any" required></label>
+    </div>
+    <div class="row">
+      <label>Category <select id="f_category"></select></label>
+      <label>Date <input id="f_date" type="date" required></label>
+    </div>
+    <div class="actions">
+      <button type="button" class="btn ghost" data-close>Cancel</button>
+      <button class="btn">Save transaction</button>
+    </div>
+  </form>
+</div>
+
+<div id="toast" role="status"></div>
+<script src="script.js"></script>
+</body>
+</html>
